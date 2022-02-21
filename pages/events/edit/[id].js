@@ -9,6 +9,7 @@ import styles from "@/styles/Form.module.css";
 import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ImageUpload from "@/components/image-upload/ImageUpload";
 import Modal from "@/components/modal/modal";
 
 const EditEventPage = ({ evt }) => {
@@ -52,6 +53,10 @@ const EditEventPage = ({ evt }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
+  };
+
+  const imageUploaded = (e) => {
+    console.log("uploaded");
   };
   return (
     <Layout title="Add New Event">
@@ -153,7 +158,7 @@ const EditEventPage = ({ evt }) => {
         </button>
       </div>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        Image Upload
+        <ImageUpload evtId={evt.id} imageUploaded={imageUploaded} />
       </Modal>
     </Layout>
   );
