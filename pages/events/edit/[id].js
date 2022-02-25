@@ -55,8 +55,11 @@ const EditEventPage = ({ evt }) => {
     setValues({ ...values, [name]: value });
   };
 
-  const imageUploaded = (e) => {
-    console.log("uploaded");
+  const imageUploaded = async (e) => {
+    const res = await fetch(`${API_URL}/events/${evt.id}`);
+    const data = await res.json();
+    setImagePreview(data.image.formats.thumbnail.url);
+    setShowModal(false);
   };
   return (
     <Layout title="Add New Event">

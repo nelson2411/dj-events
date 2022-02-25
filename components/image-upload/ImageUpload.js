@@ -3,7 +3,7 @@ import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
 
 const ImageUpload = ({ evtId, imageUploaded }) => {
-  const { image, setImage } = React.useState(null);
+  const [image, setImage] = React.useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,12 +26,6 @@ const ImageUpload = ({ evtId, imageUploaded }) => {
     setImage(e.target.files[0]);
   };
 
-  const imageUploaded = async (e) => {
-    const res = await fetch(`${API_URL}/events/${evt.id}`);
-    const data = await res.json();
-    setImagePreview(data.image.formats.thumbnail.url);
-    setShowModal(false);
-  };
   return (
     <div className={styles.form}>
       <h1>Upload Event Image</h1>
