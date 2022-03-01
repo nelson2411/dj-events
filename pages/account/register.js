@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
+import AuthContext from "@/context/AuthContext";
+
 import styles from "@/styles/AuthForm.module.css";
 
 const RegisterPage = () => {
@@ -12,13 +14,15 @@ const RegisterPage = () => {
   const [password, setPassword] = React.useState("");
   const [passwordConfirm, setPasswordConfirm] = React.useState("");
 
+  const { register, error } = React.useContext(AuthContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== passwordConfirm) {
       toast.error("Passwords do not match");
       return;
     }
-    console.table({ username, email, password });
+    register({ username, email, password });
   };
   return (
     <Layout title="User Registration">
