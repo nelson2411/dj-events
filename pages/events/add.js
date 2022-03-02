@@ -6,8 +6,9 @@ import { API_URL } from "@/config/index";
 import styles from "@/styles/Form.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { parseCookies } from "@/helpers/index";
 
-const AddEventsPage = () => {
+const AddEventsPage = ({ token }) => {
   const router = useRouter();
 
   const [values, setValues] = React.useState({
@@ -30,10 +31,15 @@ const AddEventsPage = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
     if (!res.ok) {
+      if (res.status === 403 || res.status === 401) {
+        toast.error("No token included");
+        return;
+      }
       toast.error("Something went wrong");
     } else {
       const evt = await res.json();
@@ -129,3 +135,13 @@ const AddEventsPage = () => {
 };
 
 export default AddEventsPage;
+
+export async function getServerSideProps({ req }) {
+  const { token } = parseCookies(req);
+
+  return {
+    props: {
+      token,
+    },
+  };
+}

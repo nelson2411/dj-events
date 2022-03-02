@@ -15,6 +15,7 @@ const RegisterPage = () => {
   const [passwordConfirm, setPasswordConfirm] = React.useState("");
 
   const { register, error } = React.useContext(AuthContext);
+  React.useEffect(() => error && toast.error(error));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,7 +71,7 @@ const RegisterPage = () => {
             />
           </div>
 
-          <input type="submit" value="login" className="btn" />
+          <input type="submit" value="Register" className="btn" />
         </form>
         <p>
           Already have an account?
