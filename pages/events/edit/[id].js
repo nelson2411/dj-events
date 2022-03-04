@@ -11,7 +11,7 @@ import Image from "next/image";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ImageUpload from "@/components/image-upload/ImageUpload";
-import Modal from "@/components/modal/modal";
+import Modal from "@/components/modal/Modal";
 
 const EditEventPage = ({ evt, token }) => {
   const router = useRouter();
