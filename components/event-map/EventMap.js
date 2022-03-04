@@ -5,9 +5,11 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import Geocode from "react-geocode";
 
 const EventMap = ({ evt }) => {
+  console.table({ evt });
+  console.log("address: ", evt.address);
   const [lat, setLat] = React.useState(null);
   const [lng, setLng] = React.useState(null);
-  const [loading, setLoading] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
   const [viewport, setViewport] = React.useState({
     latitude: 40.712772,
     longitude: -73.935242,
@@ -39,7 +41,9 @@ const EventMap = ({ evt }) => {
       mapboxApiAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
       onViewportChange={(vp) => setViewport(vp)}
     >
-      <Marker key={evt.id} latitude={lat} longitude={lng}></Marker>
+      <Marker key={evt.id} latitude={lat} longitude={lng}>
+        <Image src="/pin.svg" width={30} height={30} alt="marker" />
+      </Marker>
     </ReactMapGl>
   );
 };
