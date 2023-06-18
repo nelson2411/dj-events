@@ -1,17 +1,17 @@
-import React from "react";
-import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
-import Link from "next/link";
-import Search from "../search/Search";
-import AuthContext from "@/context/AuthContext";
-import styles from "@/styles/Header.module.css";
+import React from "react"
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa"
+import Link from "next/link"
+import Search from "../search/Search"
+import AuthContext from "@/context/AuthContext"
+import styles from "@/styles/Header.module.css"
 
 const Header = () => {
-  const { user, logout } = React.useContext(AuthContext);
+  const { user, logout } = React.useContext(AuthContext)
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
         <Link href="/">
-          <a>DJ Events</a>
+          <a>BeerTunes - Alicante</a>
         </Link>
       </div>
       <Search />
@@ -60,7 +60,7 @@ const Header = () => {
         </ul>
       </nav>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
